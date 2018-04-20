@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';4
+import { NavController } from 'ionic-angular';
 import { ChatPage } from '../chat/chat'
 
 @Component({
@@ -19,7 +19,7 @@ export class HomePage {
   }
 
   constructor(nav) {
-    this.nav = nav
+    this.nav = nav;
   }
 
   pushChatPage() {
