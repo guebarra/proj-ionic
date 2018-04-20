@@ -25,4 +25,5 @@ body, span, button, p {
 }
 .scroll-content {
 	background: #4d345f;
+	overflow-y: hidden; //Deve ser auto
 }

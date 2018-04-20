@@ -90,7 +90,10 @@ $colors: (
 
 
 //List separators
-$list-md-border-color: rgba(255,255,255,0.1);
-$list-ios-border-color: rgba(255,255,255,0.1);
+$list-md-border-color: rgba(255,255,255,0.0);
+$list-ios-border-color: rgba(255,255,255,0.0);
 
+//Border none tabs iOS
 $tabs-ios-border: none;
+
+$text-input-md-show-focus-highlight: false;

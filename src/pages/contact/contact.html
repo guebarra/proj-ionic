@@ -1,15 +1,14 @@
-<ion-header>
-  <ion-navbar color="color-1">
-    <ion-title>Criar Sala</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content>
 	<ion-list>
 		<ion-item class="input-create-room">
-			<ion-input type="text" placeholder="Nome da sala"></ion-input>
-		</ion-item>
-		<ion-item class="input-create-room">
+			<ion-label floating>Nome da sala</ion-label>
+	    	<ion-input type="text"></ion-input>
+	  </ion-item>
+	  <ion-item class="input-create-room">
+	  		<ion-label floating>Descrição</ion-label>
+	  		<ion-input type="text"></ion-input>
+	  </ion-item>
+		<ion-item class="input-create-room border">
 			<ion-label>Lotação</ion-label>
 			<ion-select [(ngModel)]="lotation">
 				<ion-option value="6">6</ion-option>
@@ -19,5 +18,5 @@
 		</ion-item>
 	</ion-list>
 
-	<button ion-button full>Criar sala</button>
+	<div class="center" text-center><button class="button-bg" ion-button>Criar sala</button></div>
 </ion-content>

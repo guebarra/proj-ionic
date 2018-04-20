@@ -1,6 +1,24 @@
 page-contact {
 	.input-create-room{
-		background: #d7c5ed !important;
-		margin: 20px 0;
+		background: rgba(255,255,255,0.0) !important;
+		border-bottom: 1px solid rgba(255,255,255,0.06);
+	}
+
+	ion-item ion-label {
+		color: #999 !important;
+	}
+
+	.center {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.button-bg {
+		background: rgba(255,255,255,0.2) !important;
+
+	}
+
+	.border {
+		border-bottom: 1px solid rgba(255,255,255,0.1);
 	}
 }
