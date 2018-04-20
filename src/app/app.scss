@@ -15,6 +15,14 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-ion-content {
-	background: #e5d8f3 !important;
+@font-face {
+	font-family: Roboto-Condensed;
+	src: url('../assets/fonts/roboto-condensed.woff2');
+}
+
+body, span, button, p {
+	font-family: Roboto-Condensed;
+}
+.scroll-content {
+	background: #4d345f;
 }
