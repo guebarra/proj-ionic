@@ -19,7 +19,7 @@ export class HomePage {
   }
 
   constructor(nav) {
-    this.nav = nav
+    this.nav = nav;
   }
 
   pushChatPage() {
