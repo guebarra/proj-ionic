@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';4
+import { ChatPage } from '../chat/chat'
 
 @Component({
   selector: 'page-home',
@@ -13,8 +14,16 @@ export class HomePage {
   	'Estudo coletivo'
   ];
 
-  itemSelected(item: String){
-  	console.log("Selected Item", item);
+  static get parameters() {
+      return [[NavController]];
+  }
+
+  constructor(nav) {
+    this.nav = nav
+  }
+
+  pushChatPage() {
+    this.nav.push(ChatPage);
   }
 
 }

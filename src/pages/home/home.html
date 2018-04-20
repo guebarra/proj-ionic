@@ -1,6 +1,6 @@
-<ion-content overflow-scroll="false" padding>
+<ion-content padding>
 	<ion-list>
-		<button ion-item *ngFor="let item of items" (click)="itemSelected(item)" class="item">
+		<button ion-item *ngFor="let item of items" (click)="pushChatPage()" class="item">
 			{{ item }}
 		</button>
 	</ion-list>
