@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs'
 
 /**
@@ -14,18 +14,32 @@ import { TabsPage } from '../tabs/tabs'
   selector: 'page-login',
   templateUrl: 'login.html',
 })
+
 export class LoginPage {
 
- static get parameters() {
-      return [[NavController]];
-  }
+  @ViewChild('user') user;
+  @ViewChild('pass') pass;
 
-  constructor(nav) {
-    this.nav = nav;
-  }
+ constructor(public navCtrl: NavController, public alertCtrl: AlertController){
 
-  pushTabsPage() {
-    this.nav.push(TabsPage);
-  }
+ }
 
+ signIn(){
+   console.log(this.user.value, this.pass.value);
+   if(this.user.value == "admin" && this.pass.value == "admin"){
+     this.navCtrl.push(TabsPage);
+   }
+   else{
+     this.showAlert();
+   }
+ }
+
+ showAlert() {
+   let alert = this.alertCtrl.create({
+     title: 'Erro!',
+     subTitle: 'Usuário e/ou Senha inválidos!',
+     buttons: ['OK']
+   });
+   alert.present();
+ }
 }
