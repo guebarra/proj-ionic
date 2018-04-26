@@ -8,6 +8,10 @@ import { ChatPage } from '../chat/chat'
 })
 export class HomePage {
 
+  constructor(public navCtrl: NavController){
+
+  }
+
   items = [
   	'Violão na praça',
   	'Bora beber',
@@ -18,12 +22,8 @@ export class HomePage {
       return [[NavController]];
   }
 
-  constructor(nav) {
-    this.nav = nav;
-  }
-
   pushChatPage() {
-    this.nav.push(ChatPage);
+    this.navCtrl.push(ChatPage);
   }
 
 }

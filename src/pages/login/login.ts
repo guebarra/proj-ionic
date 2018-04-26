@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { TabsPage } from '../tabs/tabs'
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the LoginPage page.
@@ -17,6 +17,9 @@ import { TabsPage } from '../tabs/tabs'
 
 export class LoginPage {
 
+  private username: String;
+  private password: String;
+
   @ViewChild('user') user;
   @ViewChild('pass') pass;
 
@@ -24,14 +27,38 @@ export class LoginPage {
 
  }
 
+ private getStoredItem(){
+   this.username = localStorage.getItem("StoredUser");
+   this.password = localStorage.getItem("StoredPass");
+ }
+
+ static setStoredItem(user: String, pass: String){
+   localStorage.setItem("StoredUser", user);
+   localStorage.setItem("StoredPass", pass);
+ }
+
+ //essa função será declarada na splash, para evitar que a página "login" seja exibida
+ ionViewDidEnter(){
+
+  this.getStoredItem();
+
+  if(this.username == "admin" && this.password == "admin"){
+    this.navCtrl.push(TabsPage);
+  }
+
+ }
+
  signIn(){
-   console.log(this.user.value, this.pass.value);
+
    if(this.user.value == "admin" && this.pass.value == "admin"){
+     LoginPage.setStoredItem(this.user.value, this.pass.value);
      this.navCtrl.push(TabsPage);
    }
+
    else{
      this.showAlert();
    }
+
  }
 
  showAlert() {
