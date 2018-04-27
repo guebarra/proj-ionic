@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 
 /**
@@ -32,7 +32,7 @@ export class LoginPage {
    this.password = localStorage.getItem("StoredPass");
  }
 
- static setStoredItem(user: String, pass: String){
+ static setStoredItem(user: string, pass: string){
    localStorage.setItem("StoredUser", user);
    localStorage.setItem("StoredPass", pass);
  }
