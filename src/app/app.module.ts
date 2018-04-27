@@ -10,6 +10,7 @@ import { TestePage } from '../pages/teste/teste';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ChatPage } from '../pages/chat/chat';
 import { LoginPage } from '../pages/login/login';
+import { CreateuserPage } from '../pages/createuser/createuser';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,6 +26,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     TabsPage,
     ChatPage,
     LoginPage,
+    CreateuserPage
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     TabsPage,
     ChatPage,
     LoginPage,
+    CreateuserPage
   ],
   providers: [
     StatusBar,
