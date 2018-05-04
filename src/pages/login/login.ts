@@ -25,7 +25,6 @@ export class LoginPage {
   @ViewChild('pass') pass;
 
  constructor(public navCtrl: NavController, public alertCtrl: AlertController){
-
  }
 
  private getStoredItem(){
@@ -42,22 +41,20 @@ export class LoginPage {
  ionViewDidEnter(){
   this.getStoredItem();
 
-  if(this.username == "admin" && this.password == "admin"){
-    this.navCtrl.push(TabsPage);
+    if(this.username != "" && this.password != ""){
+      this.navCtrl.push(TabsPage);
+    }
   }
- }
 
- signIn(){
-   if(this.user.value == "admin" && this.pass.value == "admin"){
-     LoginPage.setStoredItem(this.user.value, this.pass.value);
-     this.navCtrl.push(TabsPage);
-   }
-   else{
-     this.showAlert();
-   }
- }
+  signIn(){
+    if(this.username == this.user.value && this.password == this.pass.value){
+      this.navCtrl.push(TabsPage);
+    }
+    else{
+    }
+  }
 
- signUp(){
+ pushCreatePage(){
    this.navCtrl.push(CreateuserPage);
  }
 

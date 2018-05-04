@@ -1,11 +1,12 @@
 page-home {
-	.item {
-		color: #fff !important;
-		margin: 5% 0;
-		padding: 0 0 0 3%;
+	.img-card {
+		height: 100px;
+		background: url("../../assets/imgs/bg.jpg");
+		background-size: cover;
+		background-position: 50%;
 	}
 
-	button {
-		background-color: rgba(255,255,255,0.1) !important;
+	ion-content ion-list ion-card, ion-item{
+		background-color: rgba(255,255,255,0.05) !important;
 	}
 }

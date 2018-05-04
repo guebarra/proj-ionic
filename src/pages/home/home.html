@@ -1,7 +1,23 @@
 <ion-content padding>
 	<ion-list>
-		<button ion-item *ngFor="let item of items" (click)="pushChatPage()" class="item">
-			{{ item }}
-		</button>
+		<ion-card *ngFor="let item of cards">
+			<div class="img-card"></div>
+
+			<ion-item>
+				<ion-icon name="ios-people" item-start large></ion-icon>
+				<h2>{{item.nomeDaSala}}</h2>
+				<p>{{item.des}}</p>
+			</ion-item>
+
+			<ion-item>
+				<ion-icon name="ios-pin" item-start small></ion-icon>
+				<span item-left class="dist-card">{{item.dist}}m</span>
+				<button ion-button icon-left clear item-end (click)="pushChatPage()">
+					<ion-icon name="ios-send-outline"></ion-icon>
+					Entrar
+				</button>
+			</ion-item>
+
+		</ion-card>
 	</ion-list>
 </ion-content>

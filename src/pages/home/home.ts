@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ChatPage } from '../chat/chat';
-import { Geolocation } from '@ionic-native/geolocation';
 
 @Component({
   selector: 'page-home',
@@ -9,22 +8,12 @@ import { Geolocation } from '@ionic-native/geolocation';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private geolocation: Geolocation){
+  constructor(public navCtrl: NavController){
 
   }
 
-  getLocation(){
-    geolocation.getCurrentPosition().then(res => {
-      alert("Latitude: " + res.coords.latitude);
-      alert("Longitude: " + res.coords.longitude);
-    }).catch(() => {
-      alert("Erro de localização");
-    });
-  }
-  items = [
-  	'Violão na praça',
-  	'Bora beber',
-  	'Estudo coletivo'
+  cards = [
+  	{nomeDaSala: "Violão na Praça", des: "Bora violar na praça", dist: "26"}
   ];
 
   static get parameters() {
@@ -33,7 +22,6 @@ export class HomePage {
 
   pushChatPage() {
     this.navCtrl.push(ChatPage);
-    this.getLocation();
   }
 
 }
