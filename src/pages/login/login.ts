@@ -2,13 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, AlertController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { CreateuserPage } from '../createuser/createuser';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { UserProvider } from '../../providers/user/user';
 
 @IonicPage()
 @Component({
@@ -18,39 +12,25 @@ import { CreateuserPage } from '../createuser/createuser';
 
 export class LoginPage {
 
-  private username: String;
-  private password: String;
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public user: UserProvider){
 
-  @ViewChild('user') user;
-  @ViewChild('pass') pass;
+  }
 
- constructor(public navCtrl: NavController, public alertCtrl: AlertController){
- }
+  @ViewChild('usuario') usuario;
+  @ViewChild('senha') senha;
 
- private getStoredItem(){
-   this.username = localStorage.getItem("StoredUser");
-   this.password = localStorage.getItem("StoredPass");
- }
-
- static setStoredItem(user: string, pass: string){
-   localStorage.setItem("StoredUser", user);
-   localStorage.setItem("StoredPass", pass);
- }
-
- //essa função será declarada na splash, para evitar que a página "login" seja exibida
- ionViewDidEnter(){
-  this.getStoredItem();
-
-    if(this.username != "" && this.password != ""){
-      this.navCtrl.push(TabsPage);
-    }
+  ionViewDidEnter(){
+     if(this.user.autoLogIn()){
+       this.navCtrl.push(TabsPage);
+     }
   }
 
   signIn(){
-    if(this.username == this.user.value && this.password == this.pass.value){
+    if(this.user.logIn(this.usuario.value, this.senha.value)){
       this.navCtrl.push(TabsPage);
     }
     else{
+      this.showAlert();
     }
   }
 

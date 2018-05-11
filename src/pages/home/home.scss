@@ -1,12 +1,31 @@
 page-home {
 	.img-card {
-		height: 100px;
+		height: 50px;
+		width: 50px;
 		background: url("../../assets/imgs/bg.jpg");
 		background-size: cover;
 		background-position: 50%;
+		border-radius: 25px;
+	}
+
+	.text-card{
+		padding: 10px 0 0 5px;
 	}
 
 	ion-content ion-list ion-card, ion-item{
 		background-color: rgba(255,255,255,0.05) !important;
+		color: white !important;
+	}
+
+	h2{
+		color: white !important;
+	}
+
+	p{
+		color: rgba(255,255,255,0.5) !important;
+	}
+
+	button ion-icon, button p{
+		color: rgba(255,255,255,0.7) !important;
 	}
 }

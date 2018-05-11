@@ -9,16 +9,16 @@
 	<ion-list>
 		<ion-item>
 			<ion-label floating>Username</ion-label>
-			<ion-input type="text" #user></ion-input>
+			<ion-input type="text" #usuario></ion-input>
 		</ion-item>
 
 		<ion-item>
 			<ion-label floating>Password</ion-label>
-    		<ion-input type="password" #pass></ion-input>
+    		<ion-input type="password" #senha></ion-input>
   		</ion-item>
 
 	</ion-list>
- 	<button ion-button full class="button" (click)="signIn(1)">Login</button>
+ 	<button ion-button full class="button" (click)="signIn()">Login</button>
  	<p>Não tem uma conta?<br>
  	<a href="#" (click)="pushCreatePage()">Cadastre-se</a></p>
 </ion-content>

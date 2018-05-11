@@ -16,19 +16,19 @@
 <ion-content padding>
 <ion-list>
   <ion-item>
-    <ion-input type="text" placeholder="Nome"></ion-input>
+    <ion-input type="text" placeholder="Nome" #nome></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="text" placeholder="Usuário" #user></ion-input>
+    <ion-input type="text" placeholder="Usuário" #usuario></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="password" placeholder="Senha" #pass></ion-input>
+    <ion-input type="password" placeholder="Senha" #senha></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-input type="password" placeholder="Confirme a senha"></ion-input>
+    <ion-input type="password" placeholder="Confirme a senha" #confirmasenha></ion-input>
   </ion-item>
 
   <button ion-button full class="button" (click)="signUp()">Criar</button>

@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { UserProvider } from '../../providers/user/user';
 
 @IonicPage()
 @Component({
@@ -9,14 +10,26 @@ import { LoginPage } from '../login/login';
 })
 export class CreateuserPage {
 
-  @ViewChild('user') user;
-  @ViewChild('pass') pass;
+  @ViewChild('nome') nome;
+  @ViewChild('usuario') usuario;
+  @ViewChild('senha') senha;
+  @ViewChild('confirmasenha') confirmasenha;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public user: UserProvider) {
   }
 
-  signUp(user: string, pass: string){
-    LoginPage.setStoredItem(this.user.value, this.pass.value);
-    this.navCtrl.pop();
+  signUp(){
+    if(!this.user.usernameVerify(this.usuario.value)){
+      //alerta
+    }
+    else{
+      if(!this.senha.value == this.confirmasenha.value){
+        //alerta
+      }
+      else{
+        this.user.createUser(this.nome.value, this.usuario.value, this.senha.value);
+        this.navCtrl.pop();
+      }
+    }
   }
 }

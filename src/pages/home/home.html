@@ -1,12 +1,14 @@
 <ion-content padding>
 	<ion-list>
 		<ion-card *ngFor="let item of cards">
-			<div class="img-card"></div>
+			<div class="maps"></div>
 
 			<ion-item>
-				<ion-icon name="ios-people" item-start large></ion-icon>
-				<h2>{{item.nomeDaSala}}</h2>
-				<p>{{item.des}}</p>
+				<div item-left class="img-card"></div>
+				<div class="text-card">
+					<h2>{{item.nomeDaSala}}</h2>
+					<p>{{item.des}}</p>
+				</div>
 			</ion-item>
 
 			<ion-item>
@@ -14,7 +16,7 @@
 				<span item-left class="dist-card">{{item.dist}}m</span>
 				<button ion-button icon-left clear item-end (click)="pushChatPage()">
 					<ion-icon name="ios-send-outline"></ion-icon>
-					Entrar
+					<p>Entrar</p>
 				</button>
 			</ion-item>
 
