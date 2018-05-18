@@ -12,31 +12,56 @@ export class UserProvider {
   }
 
   private getStoredItem(){
-    this.username = localStorage.getItem("StoredUser");
-    this.password = localStorage.getItem("StoredPass");
+    var i = 0;
+     return new Promise((resolve, reject) => {
+       localStorage.getItem("StoredUser")
+       .then(
+         (val)=> {
+           this.username = val;
+           if(++i == 2) resolve();
+         }
+       ),
+       localStorage.getItem("StoredPass")
+       .then(
+         (val)=> {
+           this.password = val;
+           if(++i == 2) resolve();
+         }
+       )
+     });
   }
 
   private setStoredItem(user: string, pass: string){
-    localStorage.setItem("StoredUser", user);
-    localStorage.setItem("StoredPass", pass);
+    var i = 0;
+    return new Promise((resolve, reject) => {
+      localStorage.setItem("StoredUser", user)
+      .then(
+        ()=> if(++i == 2) resolve("Funfou User!");
+      ),
+      localStorage.setItem("StoredPass", pass)
+      .then(
+        ()=> if(++i == 2) resolve("Funfou Senha!");
+      )
+    });
   }
 
   private autentica(){
     if(this.username == "admin" && this.password == "admin"){
       return true;
     }
-
     return false;
   }
 
   private autoLogIn(){
-    this.getStoredItem();
-
-    if(this.autentica()){
-      return true;
-    }
-
-    return false;
+    return this.getStoredItem()
+    .then(
+      ()=>{
+        if(this.autentica()){
+          resolve();
+        }
+      reject();
+      }
+    );
   }
 
   private logIn(user: String, pass: String){
@@ -56,7 +81,10 @@ export class UserProvider {
   }
 
   private createUser(name: String, user: String, pass: String){
-    //comunicação com o servidor
-    this.setStoredItem(user, pass); //depois tem que tirar essa bosta
+    return this.setStoredItem(user, pass)
+    .then(
+      () => resolve(),
+      () => reject()
+    ); //depois tem que tirar essa bosta
   }
 }

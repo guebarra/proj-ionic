@@ -27,8 +27,11 @@ export class CreateuserPage {
         //alerta
       }
       else{
-        this.user.createUser(this.nome.value, this.usuario.value, this.senha.value);
-        this.navCtrl.pop();
+        this.user.createUser(this.nome.value, this.usuario.value, this.senha.value)
+        .then(
+          () => this.navCtrl.pop(),
+          () => console.log("Falha no cadastro!")
+        );
       }
     }
   }

@@ -16,6 +16,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserProvider } from '../providers/user/user';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserProvider } from '../providers/user/user';
     BrowserModule,
      IonicModule.forRoot(MyApp, {
         tabsHideOnSubPages: true,
-    })
+    }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
