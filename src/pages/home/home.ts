@@ -18,11 +18,11 @@ export class HomePage {
   }
 
   ionViewDidEnter(){
-    this.storageProvider.getAllSalas()
-    .then((results) => {
-      this.salas = results;
+    /*this.storageProvider.getAllSalas()
+    .then((result) => {
+      this.salas = result;
     })
-    .catch(e => console.error(e));
+    .catch(e => console.error(e));*/
   }
 
   static get parameters() {

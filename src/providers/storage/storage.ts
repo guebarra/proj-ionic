@@ -44,6 +44,41 @@ export class StorageProvider {
       });
   }
 
+  public insertUser(user: User) {
+    let key = this.datepipe.transform(new Date(), "ddMMyyyyHHmmss");
+    return this.saveUser(key, user);
+  }
+ 
+  public updateUser(key: string, user: User) {
+    return this.saveUser(key, user);
+  }
+ 
+  private saveUser(key: string, user: User) {
+    return this.storage.set(key, user);
+  }
+ 
+  public removeUser(key: string) {
+    return this.storage.remove(key);
+  }
+ 
+  public getAllUsers() {
+ 
+    let users: UsersList[] = [];
+ 
+    return this.storage.forEach((value: User, key: string, iterationNumber: Number) => {
+      let user = new UsersList();
+      user.key = key;
+      user.user = value;
+      users.push(user);
+    })
+      .then(() => {
+        return Promise.resolve(users);
+      })
+      .catch((error) => {
+        return Promise.reject(error);
+      });
+  }
+
 }
 
 export class Sala {
@@ -55,4 +90,15 @@ export class Sala {
 export class SalasList {
   key: string;
   sala: Sala;
+}
+
+export class User {
+  nome: string;
+  usuario: string;
+  senha: string;
+}
+
+export class UsersList {
+  key: string;
+  user: User;
 }
