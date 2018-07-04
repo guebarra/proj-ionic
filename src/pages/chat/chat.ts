@@ -16,6 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ChatPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+  	this.item = navParams.get("item");
   }
 
   ionViewDidLoad() {

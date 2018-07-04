@@ -1,6 +1,7 @@
 <ion-content padding>
+	<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
 	<ion-list>
-		<ion-card *ngFor="let item of cards">
+		<ion-card *ngFor="let item of salas">
 			<div class="maps"></div>
 
 			<ion-item>
@@ -13,8 +14,8 @@
 
 			<ion-item>
 				<ion-icon name="ios-pin" item-start small></ion-icon>
-				<span item-left class="dist-card">{{item.dist}}m</span>
-				<button ion-button icon-left clear item-end (click)="pushChatPage()">
+				<span item-left class="dist-card">{{item.dist}}km</span>
+				<button ion-button icon-left clear item-end (click)="pushChatPage(item)">
 					<ion-icon name="ios-send-outline"></ion-icon>
 					<p>Entrar</p>
 				</button>

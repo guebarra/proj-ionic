@@ -20,6 +20,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
+      
       db.createDB()
       .then(() => {
         console.log('DB criado/lido com sucesso!');
@@ -27,6 +28,7 @@ export class MyApp {
       .catch(() => {
         console.log('Erro ao ler/criar DB');
       });
+      
     }
   }
 }
