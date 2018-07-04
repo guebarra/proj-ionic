@@ -2,7 +2,7 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class Database {
+export class DatabaseProvider {
 
   constructor(private sqlite: SQLite) {
 
@@ -14,7 +14,6 @@ export class Database {
       location: 'default'
     })
     .then((db: SQLiteObject) => {
-      console.log('Entrou aqui');
       this.createTables(db);
       this.insertDefaultItens(db);
     })

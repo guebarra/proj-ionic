@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Database } from '../../providers/database/database';
+import { DatabaseProvider } from '../../providers/database/database';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 @Component({
