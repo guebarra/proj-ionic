@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Geolocation } from '@ionic-native/geolocation';
+import { NavController, ToastController } from 'ionic-angular';
+import { StorageProvider, Sala, SalasList } from '../../providers/storage/storage';
 
 @Component({
   selector: 'page-salas',
@@ -11,15 +12,22 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 export class SalasPage {
   nome: string;
-  descricao: string;
-  data: Date;
-  lotacao: number;
+  des: string;
+  dist: number;
+  sala: Sala;
 
-  constructor(private geolocation: Geolocation) {
+  salas: SalasList[];
+
+  constructor(
+    private navCtrl: NavController,
+    private geolocation: Geolocation,
+    private storageProvider: StorageProvider,
+    private toast: ToastController
+  ) {
       this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
-      console.log(resp.coords);
+      //console.log(resp.coords);
 
 
       /* CALCULO DA DISTANCIA
@@ -36,27 +44,28 @@ export class SalasPage {
 
       console.log("distancia " + dist);
       */
-      
+
       }).catch((error) => {
         console.log('Error getting location', error);
       });
 
-    
+
   }
 
-  public insert(sala: Sala){
-    return this.db.getDB()
-    .then((db: SQLiteObject) => {
-      let sql = 'insert into salas (name, desc, date, lotacao) values (?, ?, ?, ?)';
-      let data = [sala.name, sala.desc, sala.date, sala.lotacao];
 
-      return db.executeSql(sql, data)
-        .catch((e) => console.error(e));
-    })
-    .catch((e) => console.error(e));
+
+  public setSala(){
+    this.sala = new Sala();
+
+    this.sala.nome = this.nome;
+    this.sala.des = this.des;
+    this.sala.dist = this.dist;
+
+    this.storageProvider.insertSala(this.sala);
+    this.toast.create({ message: 'Sala salva.', duration: 3000, position: 'botton' }).present();
   }
 
-  public getSalas(){
+  /*public getSalas(){
     return this.db.getDB()
     .then((db: SQLiteObject) => {
       let sql = 'select * from products'; //where distância = 1km
@@ -82,5 +91,5 @@ export class SalasPage {
 
 	stpSelect(){
 		console.log('STP selected');
-	}
+	}*/
 }

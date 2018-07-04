@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DatabaseProvider {
+  private isOpen: boolean;
 
   constructor(private sqlite: SQLite) {
-
+    this.isOpen = false;
   }
 
   public createDB(){
@@ -14,6 +15,7 @@ export class DatabaseProvider {
       location: 'default'
     })
     .then((db: SQLiteObject) => {
+      this.isOpen = true;
       this.createTables(db);
       this.insertDefaultItens(db);
     })
@@ -21,33 +23,39 @@ export class DatabaseProvider {
   }
 
   private createTables(db: SQLiteObject){
-    db.sqlBatch([
-      ['CREATE TABLE IF NOT EXISTS users (iduser integer primary key AUTOINCREMENT NOT NULL, name TEXT, user TEXT, pass TEXT)'],
-      ['CREATE TABLE IF NOT EXISTS salas (idsala integer primary key AUTOINCREMENT NOT NULL, name TEXT, desc TEXT, date DATE, lotacao INTEGER)']
-     ])
-     .then(() => console.log('Tabelas criadas'))
-     .catch(e => console.error('Erro ao criar as tabelas', e));
+    db.sqlBatch(["CREATE TABLE IF NOT EXISTS salas (iduser integer primary key AUTOINCREMENT NOT NULL, name TEXT, desc TEXT, dist INTEGER)"])
+    .then(() => console.log('Tabelas criadas'))
+    .catch(e => console.log(e));
   }
 
   private insertDefaultItens(db: SQLiteObject){
-    db.executeSql('select COUNT(id) as qtd from users', {})
+    db.executeSql('SELECT COUNT(id) AS qtd FROM salas', {})
     .then((data: any) => {
+
       //Se não existe nenhum registro
       if (data.rows.item(0).qtd == 0) {
 
-        // Criando as tabelas
+        //Inserindo dados padrões
         db.sqlBatch([
-          ['insert into users (name, user, pass) values (?, ?, ?)', ['Marco', 'marco', 'marco']],
-          ['insert into users (name, user, pass) values (?, ?, ?)', ['Guilherme', 'guilherme', 'guilherme']],
-          ['insert into salas (name, desc, lotacao) values (?, ?, ?)', ['Estudo Coletivo', 'Vamos todos estudar', '6']],
-          ['insert into salas (name, desc, lotacao) values (?, ?, ?)', ['Vamo pro Bar', 'Bora beber aí galera', '12']]
+          ['INSERT INTO salas (name, des, dist) VALUES (?, ?, ?)', ['Estudo Coletivo', 'Vamos todos estudar', 6]],
+          ['INSERT INTO salas (name, des, dist) VALUES (?, ?, ?)', ['Vamo pro Bar', 'Bora beber aí galera', 12]]
         ])
-          .then(() => console.log('Dados padrões incluídos'))
-          .catch(e => console.error('Erro ao incluir dados padrões', e));
+        .then(() => console.log('Dados padrões incluídos'))
+        .catch(e => console.log('Erro ao incluir dados padrões', e));
 
       }
     })
     .catch(e => console.error('Erro ao consultar a qtd de categorias', e));
   }
 
+  public getIsOpen(){
+    return this.isOpen;
+  }
+
+  public insert(nome: string, des: string, dist: number){
+    let db: SQLiteObject;
+    console.log(nome, des, dist);
+
+    db.executeSql('INSERT INTO salas (name, des, dist) VALUES (?, ?, ?)', [nome, des, dist]);
+  }
 }

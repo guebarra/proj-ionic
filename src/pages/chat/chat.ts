@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'chat.html',
 })
 export class ChatPage {
+  item: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   	this.item = navParams.get("item");

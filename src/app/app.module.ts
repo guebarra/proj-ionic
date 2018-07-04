@@ -14,8 +14,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserProvider } from '../providers/user/user';
 import { SalasProvider } from '../providers/salas/salas';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { SQLite } from '@ionic-native/sqlite';
 import { DatabaseProvider } from '../providers/database/database';
+import { StorageProvider } from '../providers/storage/storage';
+import { DatePipe } from '@angular/common'; 
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { DatabaseProvider } from '../providers/database/database';
     BrowserModule,
      IonicModule.forRoot(MyApp, {
         tabsHideOnSubPages: true,
-    })
+    }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,7 +57,9 @@ import { DatabaseProvider } from '../providers/database/database';
     UserProvider,
     SalasProvider,
     DatabaseProvider,
-    SQLite
+    SQLite,
+    StorageProvider,
+    DatePipe
   ]
 })
 export class AppModule {}

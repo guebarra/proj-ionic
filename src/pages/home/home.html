@@ -7,14 +7,14 @@
 			<ion-item>
 				<div item-left class="img-card"></div>
 				<div class="text-card">
-					<h2>{{item.nomeDaSala}}</h2>
-					<p>{{item.des}}</p>
+					<h2>{{item.sala.nome}}</h2>
+					<p>{{item.sala.des}}</p>
 				</div>
 			</ion-item>
 
 			<ion-item>
 				<ion-icon name="ios-pin" item-start small></ion-icon>
-				<span item-left class="dist-card">{{item.dist}}km</span>
+				<span item-left class="dist-card">{{item.sala.dist}}km</span>
 				<button ion-button icon-left clear item-end (click)="pushChatPage(item)">
 					<ion-icon name="ios-send-outline"></ion-icon>
 					<p>Entrar</p>

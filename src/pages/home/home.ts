@@ -1,15 +1,28 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { ChatPage } from '../chat/chat';
+import { StorageProvider, Sala, SalasList } from '../../providers/storage/storage';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  salas: SalasList[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams){
-    this.retornaSalas();
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private storageProvider: StorageProvider,
+    private toast: ToastController){
+    //this.retornaSalas();
+  }
+
+  ionViewDidEnter(){
+    this.storageProvider.getAllSalas()
+    .then((results) => {
+      this.salas = results;
+    })
+    .catch(e => console.error(e));
   }
 
   static get parameters() {
@@ -21,17 +34,14 @@ export class HomePage {
     this.navCtrl.push(ChatPage,{item:item});
   }
 
-  retornaSalas() {
-    //Fazer requisição no servidor e retornar salas
-    this.salas = [
-      {nomeDaSala: "Blablabla", des: "Bla", dist: "26"},
-      {nomeDaSala: "BleBleBle", des: "Ble", dist: "15"},
-      {nomeDaSala: "Piolho", des: "Scabin", dist: "50"},
-      {nomeDaSala: "Macarrão", des: "alho e oleo", dist: "2"}
-    ];
-  }
+  /*public retornaSalas() {
+    this.storageProvider.getAllSalas()
+    .then(results => {
+      this.salas = results;
+    })
+  }*/
 
-  getItems(ev: any) {
+  /*getItems(ev: any) {
     this.retornaSalas();
     const val = ev.target.value;
 
@@ -40,6 +50,6 @@ export class HomePage {
         return (sala.nomeDaSala.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
-  }
+  }*/
 
 }

@@ -8,12 +8,12 @@
 
 	  <ion-item class="input-create-room">
 	  		<ion-label floating>Descrição</ion-label>
-	  		<ion-input type="text" [(ngModel)]="descricao"></ion-input>
+	  		<ion-input type="text" [(ngModel)]="des"></ion-input>
 	  </ion-item>
 
 		<ion-item class="input-create-room">
 			<ion-label>Lotação</ion-label>
-			<ion-select [(ngModel)]="lotacao">
+			<ion-select [(ngModel)]="dist">
 				<ion-option value="6">6</ion-option>
 				<ion-option value="12">12</ion-option>
 				<ion-option value="18">18</ion-option>
@@ -22,6 +22,6 @@
 
 	</ion-list>
 	<div class="center" text-center>
-		<button ion-button>Criar sala</button>
+		<button ion-button (click)="setSala()">Criar sala</button>
 	</div>
 </ion-content>
