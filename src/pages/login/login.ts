@@ -20,11 +20,9 @@ export class LoginPage {
   @ViewChild('senha') senha;
 
   ionViewDidEnter(){
-     this.user.autoLogIn().then(()=>{
+     if(this.user.autoLogIn()){
        this.navCtrl.push(TabsPage);
-     }, ()=>{
-       console.log("Falha de Autenticação !!");
-     });
+     }
   }
 
   signIn(){

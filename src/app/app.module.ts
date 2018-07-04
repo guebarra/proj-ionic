@@ -3,10 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { ConfigPage } from '../pages/config/config';
+import { SalasPage } from '../pages/salas/salas';
 import { HomePage } from '../pages/home/home';
-import { TestePage } from '../pages/teste/teste';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ChatPage } from '../pages/chat/chat';
 import { LoginPage } from '../pages/login/login';
@@ -16,15 +15,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserProvider } from '../providers/user/user';
-import { IonicStorageModule } from '@ionic/storage';
+import { SalasProvider } from '../providers/salas/salas';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    ConfigPage,
+    SalasPage,
     HomePage,
-    TestePage,
     TabsPage,
     ChatPage,
     LoginPage,
@@ -34,16 +32,14 @@ import { IonicStorageModule } from '@ionic/storage';
     BrowserModule,
      IonicModule.forRoot(MyApp, {
         tabsHideOnSubPages: true,
-    }),
-    IonicStorageModule.forRoot()
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    ConfigPage,
+    SalasPage,
     HomePage,
-    TestePage,
     TabsPage,
     ChatPage,
     LoginPage,
@@ -54,7 +50,8 @@ import { IonicStorageModule } from '@ionic/storage';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation,
-    UserProvider
+    UserProvider,
+    SalasProvider
   ]
 })
 export class AppModule {}
