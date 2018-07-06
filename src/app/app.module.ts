@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { RootPage } from '../pages/root/root';
 import { ConfigPage } from '../pages/config/config';
 import { SalasPage } from '../pages/salas/salas';
 import { HomePage } from '../pages/home/home';
@@ -19,10 +20,12 @@ import { DatabaseProvider } from '../providers/database/database';
 import { StorageProvider } from '../providers/storage/storage';
 import { DatePipe } from '@angular/common'; 
 import { IonicStorageModule } from '@ionic/storage';
+import { LocalProvider } from '../providers/local/local';
 
 @NgModule({
   declarations: [
     MyApp,
+    RootPage,
     ConfigPage,
     SalasPage,
     HomePage,
@@ -41,6 +44,7 @@ import { IonicStorageModule } from '@ionic/storage';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    RootPage,
     ConfigPage,
     SalasPage,
     HomePage,
@@ -59,7 +63,8 @@ import { IonicStorageModule } from '@ionic/storage';
     DatabaseProvider,
     SQLite,
     StorageProvider,
-    DatePipe
+    DatePipe,
+    LocalProvider
   ]
 })
 export class AppModule {}

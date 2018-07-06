@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { HomePage } from '../home/home';
+import { UserProvider } from '../../providers/user/user';
 
-/**
- * Generated class for the RootPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,11 +12,24 @@ import { LoginPage } from '../login/login';
 })
 export class RootPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public user: UserProvider) {
+    
   }
 
   ionViewDidEnter() {
-    this.navCtrl.push(LoginPage);
+  
+    this.user.autoLogin()
+      .then(
+        (val) => {
+          console.log(val);
+          this.navCtrl.push(HomePage);
+        },
+        (err) => {
+          console.log(err);
+          this.navCtrl.push(LoginPage);
+        }
+      );
+  
   }
 
 }

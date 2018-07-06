@@ -1,62 +1,106 @@
-//import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AlertController } from 'ionic-angular';
 
 @Injectable()
 export class UserProvider {
 
   private username: String;
   private password: String;
+  private radius: Number;
 
-  constructor() {
+  constructor(public alertCtrl: AlertController) {
 
   }
 
   private getStoredItem(){
-    this.username = localStorage.getItem("StoredUser");
-    this.password = localStorage.getItem("StoredPass");
+    let promise = new Promise((resolve,reject) => {
+      this.username = localStorage.getItem("StoredUser");
+      this.password = localStorage.getItem("StoredPass");
+      this.radius = localStorage.getItem("StoredRadius");
+      resolve('Checagem feita no local storage!');
+    });
+  
+    return promise;
   }
 
-  private setStoredItem(user: string, pass: string){
+  setStoredItem(user: string, pass: string, radius: number){
     localStorage.setItem("StoredUser", user);
     localStorage.setItem("StoredPass", pass);
+    localStorage.setItem("StoredRadius",radius);
   }
 
-  private autentica(){
-    if(this.username == "admin" && this.password == "admin"){
-      return true;
-    }
+  autentica(res:boolean) {
+    let promise = new Promise((resolve,reject) => {
+      if(/*autenticar usuário com firebase*/res)
+        resolve('Usuário cadastrado!');
+      else
+        reject('Usuário não cadastrado!');
+    });
 
-    return false;
+    return promise;
   }
 
-  private autoLogIn(){
-    this.getStoredItem();
+  autoLogin() {
+    let promise = new Promise((resolve,reject) => {
+      this.getStoredItem()
+      .then(
+        (val) => {
+          console.log(val);
+          return this.autentica(true);
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
+      .then(
+        (val) => {
+          console.log(val);
+          resolve('Login feito!');
+        },
+        (err) => {
+          console.log(err);
+          reject('Login não feito!');
+        }
+      )
+    });
 
-    if(this.autentica()){
-      return true;
-    }
-
-    return false;
+    return promise;
   }
 
-  private logIn(user: String, pass: String){
-    this.username = user;
-    this.password = pass;
-
-    if(this.autentica()){
-      this.setStoredItem(this.username, this.password);
-      return true;
-    }
-
-    return false;
+  alerta(err:string) {
+    let alert = this.alertCtrl.create({
+      title: 'Erro!',
+      subTitle: err,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
-  private usernameVerify(user: String){
-    return true;
+  comparaString(str1:String,str2:String) {
+    let promise = new Promise((resolve,reject) => {
+      if(str1.localeCompare(str2) == 0)
+        resolve('Senhas iguais!');
+      else
+        reject('Senhas diferentes');
+    });
+
+    return promise;
   }
 
-  private createUser(name: String, user: String, pass: String){
-    //comunicação com o servidor
-    this.setStoredItem(user, pass); //depois tem que tirar essa bosta
+  cadastra(nome:string,user:string,senha:string) {
+    /*CADASTRAR FIREBASE*/
+    let promise = new Promise((resolve,reject) => {
+      if(/*FIREBASE*/true)
+        resolve('Cadastro feito');
+      else
+        reject('Cadastro não feito');
+    });
+
+    return promise;
   }
+
+  erro(err) {
+    return Promise.reject(err);
+  };
+
 }

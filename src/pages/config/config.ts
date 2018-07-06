@@ -14,7 +14,7 @@ export class ConfigPage {
   }
 
   logOut(){
-    this.userProvider.setStoredItem('','');
+    this.userProvider.setStoredItem('','','');
     this.navCtrl.setRoot(LoginPage);
     this.navCtrl.popToRoot();
   }

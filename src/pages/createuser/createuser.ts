@@ -1,8 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
-import { StorageProvider, User, UsersList } from '../../providers/storage/storage';
 
 @IonicPage()
 @Component({
@@ -13,26 +11,36 @@ export class CreateuserPage {
   nome: string;
   usuario: string;
   senha: string;
-  confirm: string;
-  user: User;
+  confirma: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public storageProvider: StorageProvider,
-    private toast: ToastController
+    public user: UserProvider,
   ){
 
   }
 
-  setUser(){
-    this.user = new User();
-
-    this.user.nome = this.nome;
-    this.user.usuario = this.usuario;
-    this.user.senha = this.senha;
-
-    this.storageProvider.insertUser(this.user);
-    this.toast.create({ message: 'Usuário criado.', duration: 3000, position: 'botton' }).present();
-    this.navCtrl.pop();
+  criar() {
+    this.user.comparaString(this.senha,this.confirma)
+      .then(
+        (val) => {
+          console.log(val);
+          return this.user.cadastra(this.nome,this.usuario,this.senha);
+        },
+        (err) => {
+          return this.user.erro(err);
+        }
+      )
+      .then(
+        (val) => {
+          console.log(val);
+          this.navCtrl.pop();
+        },
+        (err) => {
+          console.log(err);
+          this.user.alerta(err);
+        }
+      )
   }
+
 }
